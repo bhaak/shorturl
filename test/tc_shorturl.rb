@@ -28,7 +28,10 @@ class TestShortURL < Test::Unit::TestCase
     # ShortURL.valid_services.each do |service|
     #   assert ShortURL.shorten(@url, service).url?
     # end
-    
+
+    # is.gd doesn't change the shortened urls: http://is.gd/faq.php#duration
+    assert ShortURL.shorten(@url, :isgd) == "http://is.gd/O2ghm5"
+
     # An invalid service
     assert_raise(InvalidService) { ShortURL.shorten(@url, :foobar) }
   end
